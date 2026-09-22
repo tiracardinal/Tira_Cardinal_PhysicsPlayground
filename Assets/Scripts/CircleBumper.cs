@@ -21,7 +21,7 @@ public class CircleBumper : MonoBehaviour
         if (Time.time > timeStamp + delayTime && rend.color == Color.white)
         {
             rend.color = Color.black;
-            outerCircle.transform.localScale = new Vector3(2.5f, 2.5f, 0);
+            outerCircle.transform.localScale = new Vector3(2.2f, 2.2f, 0);
         }
 
 
@@ -31,7 +31,7 @@ public class CircleBumper : MonoBehaviour
     {
         timeStamp = Time.time;
         rend.color = Color.white;
-        outerCircle.transform.localScale = new Vector3(2.8f, 2.8f, 0);
+        outerCircle.transform.localScale = new Vector3(2.5f, 2.5f, 0);
 
         // Position of the pinball minus the bumper position gives me a Vector from the bumper toward the pinball.
         Vector2 direction = (collision.transform.position - transform.position).normalized;
