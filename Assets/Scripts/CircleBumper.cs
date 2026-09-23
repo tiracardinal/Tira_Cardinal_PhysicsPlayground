@@ -18,7 +18,7 @@ public class CircleBumper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > timeStamp + delayTime && rend.color == Color.white)
+        if (Time.time > timeStamp + delayTime)
         {
             rend.color = Color.black;
             outerCircle.transform.localScale = new Vector3(2.2f, 2.2f, 0);
@@ -30,7 +30,7 @@ public class CircleBumper : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         timeStamp = Time.time;
-        rend.color = Color.white;
+        rend.color = Random.ColorHSV();
         outerCircle.transform.localScale = new Vector3(2.5f, 2.5f, 0);
 
         // Position of the pinball minus the bumper position gives me a Vector from the bumper toward the pinball.
