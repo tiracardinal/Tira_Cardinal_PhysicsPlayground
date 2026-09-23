@@ -2202,7 +2202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Deathzone
   ballSpawn: {fileID: 1131564541}
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 316216899}
 --- !u!1001 &1079637484
 PrefabInstance:
   m_ObjectHideFlags: 0
