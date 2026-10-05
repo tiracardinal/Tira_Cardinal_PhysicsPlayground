@@ -24,7 +24,6 @@ public class CircleBumper : MonoBehaviour
             outerCircle.transform.localScale = new Vector3(2.2f, 2.2f, 0);
         }
 
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
