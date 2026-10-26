@@ -4,25 +4,83 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] Rigidbody2D ball;
+    [SerializeField] HingeJoint2D leftFlipper, rightFlipper;
+    [SerializeField] GameObject launcher, upperLimit, lowerLimit;
 
     public bool canLaunch;
+    [SerializeField] float launcherSpeedDown, launcherSpeedUp, launcherForce;
+
+    float launchDistance;
+    public bool isLaunched, flippersActive;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        canLaunch = true;
+        //canLaunch = true;
+        isLaunched = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && canLaunch)
+        if (Keyboard.current.sKey.isPressed)
         {
-            ball.constraints = RigidbodyConstraints2D.None;
-            canLaunch = false;
+            if (isLaunched && canLaunch)
+            {
+                isLaunched = false;
+            }
+
+            launcher.transform.Translate(Vector2.down * Time.deltaTime * launcherSpeedDown);
+
+            if (launcher.transform.position.y < lowerLimit.transform.position.y)
+            {
+                launcher.transform.position = new Vector2(launcher.transform.position.x, lowerLimit.transform.position.y);
+            }
+
+            launchDistance = Vector2.Distance(launcher.transform.position, upperLimit.transform.position);
         }
+        else
+        {
+            if (launcher.transform.position.y < upperLimit.transform.position.y)
+            {
+                launcher.transform.Translate(Vector2.up * Time.deltaTime * launcherSpeedUp);
+            }
+            else
+            {
+                if (!isLaunched && canLaunch)
+                {
+                    ball.AddForce(Vector2.up * launcherForce * launchDistance, ForceMode2D.Impulse);
+                    isLaunched = true;
+                }
+            }
+
+            if (launcher.transform.position.y > upperLimit.transform.position.y)
+            {
+                launcher.transform.position = new Vector2(launcher.transform.position.x, upperLimit.transform.position.y);
+            }
+        }
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Application.Quit();
+        }
+
+        if (Keyboard.current.aKey.isPressed && flippersActive)
+        {
+            leftFlipper.useMotor = true;
+        }
+        else
+        {
+            leftFlipper.useMotor = false;
+        }
+
+        if (Keyboard.current.dKey.isPressed && flippersActive)
+        {
+            rightFlipper.useMotor = true;
+        }
+        else
+        {
+            rightFlipper.useMotor = false;
         }
     }
 }
