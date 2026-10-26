@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float launcherSpeedDown, launcherSpeedUp, launcherForce;
 
     float launchDistance;
-    public bool isLaunched, flippersActive;
+    public bool isLaunched, flippersActive, launcherActive;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.sKey.isPressed)
+        if (Keyboard.current.sKey.isPressed && launcherActive)
         {
             if (isLaunched && canLaunch)
             {
@@ -83,4 +83,6 @@ public class PlayerControl : MonoBehaviour
             rightFlipper.useMotor = false;
         }
     }
+
+
 }

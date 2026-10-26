@@ -14,6 +14,7 @@ public class DeathZone : MonoBehaviour
         DeactivateBall();
 
         playerInput.flippersActive = false;
+        playerInput.launcherActive = false;
     }
 
     void DeactivateBall()
@@ -37,4 +38,3 @@ public class DeathZone : MonoBehaviour
         ball.gameObject.SetActive(true);
     }
 }
-

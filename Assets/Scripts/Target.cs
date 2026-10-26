@@ -1,10 +1,9 @@
-using System.Collections;
 using UnityEngine;
 
 public class Target : MonoBehaviour
 {
     [SerializeField] SpriteRenderer rend;
-    [SerializeField] CircleCollider2D collide;
+    [SerializeField] BoxCollider2D collide;
 
     [SerializeField] bool autoReset;
     [SerializeField] float resetTime;

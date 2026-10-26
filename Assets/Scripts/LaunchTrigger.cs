@@ -7,6 +7,7 @@ public class LaunchTrigger : MonoBehaviour
     {
         playerInput.canLaunch = true;
         playerInput.flippersActive = true;
+        playerInput.launcherActive = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
